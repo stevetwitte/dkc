@@ -2,4 +2,4 @@
 
 require "dkc"
 
-Dkc::CLI.start(ARGV)
+Dkc::Main.start(ARGV)

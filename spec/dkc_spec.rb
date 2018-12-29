@@ -3,7 +3,7 @@ RSpec.describe Dkc do
     expect(Dkc::VERSION).not_to be nil
   end
 
-  it "does something useful" do
-    expect(false).to eq(true)
+  it "runs the start command" do
+    expect(Dkc::Main.start).to be_truthy
   end
 end
