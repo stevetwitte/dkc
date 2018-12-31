@@ -1,3 +1,4 @@
+require 'json'
 require "singleton"
 require "dkc/constants"
 
@@ -10,7 +11,7 @@ module Dkc
         config_file = File.read(CONFIG_FILE_NAME)
         parsed_data = JSON.parse(config_file)
 
-        if parsed_data.class != Hash || parsed_data.length <= 0
+        if parsed_data.class != Hash
           raise StandardError.new("ERROR: JSON Failed to parse in #{CONFIG_FILE_NAME}")
         end
 

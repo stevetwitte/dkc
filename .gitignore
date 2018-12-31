@@ -6,6 +6,9 @@
 /pkg/
 /spec/reports/
 /tmp/
+.dkc.config
+Dockerfile
+docker-compose.yml
 
 # rspec failure tracking
 .rspec_status
