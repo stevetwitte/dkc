@@ -1,8 +1,8 @@
 # Dkc
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/dkc`. To experiment with that code, run `bin/console` for an interactive prompt.
+This gem was created to solve a specific problem.  It exists to provide simple commands that are project specific, related to Docker and Docker Compose.
 
-TODO: Delete this and the text above, and describe your gem
+The gem is very limited in functionality right now.
 
 ## Installation
 
