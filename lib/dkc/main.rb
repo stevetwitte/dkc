@@ -123,7 +123,7 @@ module Dkc
         raise StandardError.new("ERROR: No logContainers value in #{CONFIG_FILE_NAME}")
       end
 
-      run("docker-compose logs -f #{log_containers}")
+      run("docker-compose logs -f #{log_containers.join(" ")}")
 
     rescue StandardError => e
       puts e.message
