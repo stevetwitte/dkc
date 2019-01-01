@@ -109,5 +109,25 @@ module Dkc
       puts e.message
       exit false
     end
+
+    desc "logs", "Tail logs on containers in config"
+    def logs
+      puts "Tailing logs..."
+      unless Dkc::Config.instance.load
+        raise StandardError.new("ERROR: Could not load/parse #{CONFIG_FILE_NAME}")
+      end
+
+      log_containers = Dkc::Config.instance.getValue("logContainers")
+
+      if log_containers.class != Array || log_containers.length <= 0
+        raise StandardError.new("ERROR: No logContainers value in #{CONFIG_FILE_NAME}")
+      end
+
+      run("docker-compose logs -f #{log_containers}")
+
+    rescue StandardError => e
+      puts e.message
+      exit false
+    end
   end
 end
