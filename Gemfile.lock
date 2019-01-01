@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    dkc (0.1.1)
+    dkc (0.1.2)
       thor (~> 0.20)
 
 GEM
