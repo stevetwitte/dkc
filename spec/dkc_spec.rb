@@ -4,6 +4,7 @@ RSpec.describe Dkc do
   end
 
   it "runs the start command" do
-    expect(Dkc::Main.start).to be_truthy
+    content = capture(:stdout) { Dkc::Main.start }
+    expect(content.strip).to eq("Commands:\n  rspec bash            # Start Bash on main container\n  rspec help [COMMAND]  # Describe available commands or one specific command\n  rspec up              # Provision containers")
   end
 end

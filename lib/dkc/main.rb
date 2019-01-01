@@ -27,7 +27,67 @@ module Dkc
 
     rescue StandardError => e
       puts e.message
-      return false
+      exit false
+    end
+
+    desc "down", "Stopping and removing containers"
+    def down
+      puts "Stopping and Removing Containers..."
+      unless Dkc::Config.instance.load
+        raise StandardError.new("ERROR: Could not load/parse #{CONFIG_FILE_NAME}")
+      end
+
+      if Dkc::Config.instance.getValue("usesCompose") == true && Dkc::Config.instance.getValue("customDown") == nil
+        run("docker-compose down")
+      end
+
+      if Dkc::Config.instance.getValue("usesCompose") == true && Dkc::Config.instance.getValue("customDown") != nil
+        run(Dkc::Config.instance.getValue("customDown"))
+      end
+
+    rescue StandardError => e
+      puts e.message
+      exit false
+    end
+
+    desc "start", "Start containers"
+    def start
+      puts "Starting Containers..."
+      unless Dkc::Config.instance.load
+        raise StandardError.new("ERROR: Could not load/parse #{CONFIG_FILE_NAME}")
+      end
+
+      if Dkc::Config.instance.getValue("usesCompose") == true && Dkc::Config.instance.getValue("customStart") == nil
+        run("docker-compose start")
+      end
+
+      if Dkc::Config.instance.getValue("usesCompose") == true && Dkc::Config.instance.getValue("customStart") != nil
+        run(Dkc::Config.instance.getValue("customStart"))
+      end
+
+    rescue StandardError => e
+      puts e.message
+      exit false
+    end
+
+    desc "stop", "Stop containers"
+    def stop
+      puts "Stopping Containers..."
+      unless Dkc::Config.instance.load
+        raise StandardError.new("ERROR: Could not load/parse #{CONFIG_FILE_NAME}")
+      end
+
+      if Dkc::Config.instance.getValue("usesCompose") == true && Dkc::Config.instance.getValue("customStop") == nil
+        run("docker-compose stop")
+      end
+
+      if Dkc::Config.instance.getValue("usesCompose") == true && Dkc::Config.instance.getValue("customStop") != nil
+        run(Dkc::Config.instance.getValue("customStop"))
+      end
+
+    rescue StandardError => e
+      puts e.message
+      exit false
     end
 
     desc "bash", "Start Bash on main container"
@@ -47,7 +107,7 @@ module Dkc
 
     rescue StandardError => e
       puts e.message
-      return false
+      exit false
     end
   end
 end
