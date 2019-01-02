@@ -10,6 +10,13 @@ module Dkc
       File.dirname(__FILE__)
     end
 
+    desc "init", "Create a new .dkc.config"
+    def init
+      config_file = File.new(CONFIG_FILE_NAME, "w+")
+      config_file.write(CONFIG_FILE_EXAMPLE)
+      config_file.close
+    end
+
     desc "up", "Provision containers"
     def up
       puts "Bringing Containers Up..."
